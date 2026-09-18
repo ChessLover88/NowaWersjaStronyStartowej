@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matylda House - Kiosk (Wersja Centralna)</title>
+    <!-- Czcionka Google Fonts: Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Ikony FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050505; /* Głęboka czerń */
+            --primary-color: #385c13; /* Oliwkowa zieleń z logo */
+            --secondary-color: #575757; /* Szary */
+            --text-light: #e0e0e0;
+            --widget-bg: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #111111 0%, #000000 100%);
+        }
+
+        /* Sekcja Górna (Header) - Scentralizowana */
+        .header-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header-section img {
+            width: 180px; /* Rozmiar logo dostosowany do środka ekranu */
+            height: auto;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0px 0px 20px rgba(56, 92, 19, 0.4));
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Dynamiczne, pulsujące powitanie */
+        .dynamic-greeting {
+            font-size: 2.2rem;
+            font-weight: 400;
+            /* Animacja pulsowania: zmiana koloru z szarego na oliwkowy i delikatne powiększenie */
+            animation: pulseGreeting 4s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGreeting {
+            0% {
+                color: #575757;
+                text-shadow: 0 0 5px rgba(87, 87, 87, 0.2);
+                transform: scale(1);
+            }
+            100% {
+                color: var(--primary-color);
+                text-shadow: 0 0 20px rgba(56, 92, 19, 0.8);
+                transform: scale(1.03);
+            }
+        }
+
+        /* Sekcja Kafelków (Grid) */
+        .tiles-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 80%;
+            max-width: 1000px;
+        }
+
+        .tile {
+            background-color: var(--widget-bg);
+            border: 2px solid #222;
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tile:hover, .tile:active {
+            border-color: var(--primary-color);
+            background-color: #1a1a1a;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(56, 92, 19, 0.15);
+        }
+
+        .tile-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            width: 70px;
+            text-align: center;
+        }
+
+        /* Ręczna korekta koloru dla ikony Pyszne.pl (Opcjonalnie pomarańcz) */
+        .food-icon {
+            color: #FF8000;
+            text-shadow: 0 0 10px rgba(255, 128, 0, 0.3);
+        }
+
+        .tile-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .tile-content p {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sekcja Header (Logo i Powitanie) -->
+    <div class="header-section">
+        <img src="logo.png" alt="Matylda House Logo">
+        <div class="header-title">MATYLDA HOUSE</div>
+        <div class="dynamic-greeting" id="greeting">Ładowanie...</div>
+    </div>
+
+    <!-- Sekcja Kafelków -->
+    <div class="tiles-container">
+        
+        <!-- Kafelek WiFi -->
+        <div class="tile">
+            <i class="fa-solid fa-wifi tile-icon"></i>
+            <div class="tile-content">
+                <h3>Wi-Fi</h3>
+                <p>Sieć: <strong>Matylda_House</strong><br>Hasło: <strong>Witamy2026</strong></p>
+            </div>
+        </div>
+
+        <!-- Kafelek Adres -->
+        <div class="tile">
+            <i class="fa-solid fa-location-dot tile-icon"></i>
+            <div class="tile-content">
+                <h3>Twój adres</h3>
+                <p>Matylda House<br>Swoszowice, Kraków</p>
+            </div>
+        </div>
+
+        <!-- Kafelek Regulamin -->
+        <div class="tile">
+            <i class="fa-solid fa-file-contract tile-icon"></i>
+            <div class="tile-content">
+                <h3>Regulamin</h3>
+                <p>Zasady domu i ważne informacje o pobycie</p>
+            </div>
+        </div>
+
+        <!-- Kafelek Pyszne.pl (Jako odnośnik URL) -->
+        <a href="https://www.pyszne.pl" target="_blank" class="tile">
+            <i class="fa-solid fa-utensils tile-icon food-icon"></i>
+            <div class="tile-content">
+                <h3>Zamów jedzenie</h3>
+                <p>Znajdź restauracje i zamów z dostawą przez Pyszne.pl</p>
+            </div>
+        </a>
+
+    </div>
+
+    <script>
+        // Logika odpowiadająca za wyświetlanie powitania na podstawie pory dnia
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            const greetingElement = document.getElementById('greeting');
+            
+            let greetingText = "";
+
+            if (hour >= 5 && hour < 12) {
+                greetingText = "Dzień dobry, życzymy udanego pobytu!";
+            } else if (hour >= 12 && hour < 18) {
+                greetingText = "Dzień dobry, życzymy miłego popołudnia!";
+            } else if (hour >= 18 && hour < 22) {
+                greetingText = "Dobry wieczór, życzymy wspaniałego odpoczynku!";
+            } else {
+                greetingText = "Dobranoc, życzymy spokojnej nocy!";
+            }
+
+            greetingElement.textContent = greetingText;
+        }
+
+        // Uruchom od razu przy załadowaniu strony
+        updateGreeting();
+
+        // Sprawdzaj co minutę (60000 ms), czy nie zmieniła się pora dnia
+        setInterval(updateGreeting, 60000);
+    </script>
+
+</body>
+</html>
